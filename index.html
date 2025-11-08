@@ -10,17 +10,17 @@
       font-family: "Inter", sans-serif;
     }
 
- body {
-  margin: 0;
-  background-image: url("https://github.com/Vdffrfr333434/HntrsNt/blob/main/HuntersPattern2.png?raw=true"); /* путь к твоему узору */
-  background-repeat: repeat;            /* повторяем по горизонтали и вертикали */
-  background-size: 300px 300px;                /* или можно указать 100px 100px — масштаб */
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
+    body {
+      margin: 0;
+      background-image: url("https://github.com/Vdffrfr333434/HntrsNt/blob/main/HuntersPattern2.png?raw=true");
+      background-repeat: repeat;
+      background-size: 300px 300px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
 
     .container {
       background: rgba(255, 255, 255, 0.1);
@@ -32,20 +32,13 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       backdrop-filter: blur(8px);
     }
-    
-    .logo img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: 0 auto 20px; /* центрируем и даем отступ снизу */
-  border-radius: 5px;
-}
 
-    .logo {
-      font-size: 2em;
-      font-weight: bold;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
+    .logo img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 20px;
+      border-radius: 5px;
     }
 
     form {
@@ -71,7 +64,7 @@
     }
 
     input[type="submit"]:hover {
-      background-color: #f0f0ff;
+      background-color: #2e2e2e;
     }
 
     .divider {
@@ -101,13 +94,84 @@
     a:hover {
       opacity: 1;
     }
+
+    /* ===== МОДАЛКА ===== */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: #fff;
+      color: #333;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+      width: 80%;
+      max-width: 320px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      animation: popIn 0.3s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.9); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    /* ===== ЛОАДЕР ===== */
+    .loader {
+      border: 6px solid #eee;
+      border-top: 6px solid #DE2323;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      margin: 20px auto;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .modal button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      border: none;
+      background: #DE2323;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .modal button:hover {
+      background: #b81e1e;
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="logo img"><img src="https://github.com/Vdffrfr333434/HntrsNt/blob/main/HnetApp.png?raw=true" alt="Hunters.Net" /></div>
+    <div class="logo">
+      <img src="https://github.com/Vdffrfr333434/HntrsNt/blob/main/HnetApp.png?raw=true" alt="Hunters.Net" />
+    </div>
 
-    <form>
+    <form id="loginForm">
       <input type="text" placeholder="Логин" required />
       <input type="password" placeholder="Пароль" required />
       <input type="submit" value="Войти" />
@@ -115,12 +179,59 @@
 
     <div class="divider">или</div>
 
-    <div class="register">
+    <form id="registerForm" class="register">
       <input type="email" placeholder="Ваш Email" required />
       <input type="submit" value="Зарегистрироваться" />
-    </div>
+    </form>
 
     <p class="small-text">Забыли пароль? <a href="#">Восстановить</a></p>
   </div>
+
+  <!-- ===== МОДАЛКА ===== -->
+  <div class="modal" id="modal">
+    <div class="modal-content" id="modalContent">
+      <div class="loader"></div>
+      <p>Загрузка...</p>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const modalContent = document.getElementById('modalContent');
+
+    // Показывает лоадер и сообщение
+    function showLoader(message, duration, callback) {
+      modal.style.display = 'flex';
+      modalContent.innerHTML = `<div class="loader"></div><p>${message}</p>`;
+      setTimeout(callback, duration);
+    }
+
+    // Показывает итоговое сообщение
+    function showMessage(text) {
+      modalContent.innerHTML = `<p>${text}</p><button onclick="closeModal()">OK</button>`;
+    }
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    // ===== Обработка входа =====
+    document.getElementById('loginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const duration = Math.floor(Math.random() * 20000) + 20000; // 20–40 сек
+      showLoader('Вход в систему...', duration, () => {
+        showMessage('Ошибка соединения. Включите VPN или проверьте интернет-соединение.');
+      });
+    });
+
+    // ===== Обработка регистрации =====
+    document.getElementById('registerForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const duration = Math.floor(Math.random() * 10000) + 5000; // 5–15 сек
+      showLoader('Регистрация...', duration, () => {
+        showMessage('Мы отправили письмо на ваш email. Проверьте почту и папку "Спам".');
+      });
+    });
+  </script>
 </body>
 </html>
