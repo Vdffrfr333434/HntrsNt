@@ -10,15 +10,17 @@
       font-family: "Inter", sans-serif;
     }
 
-    body {
-      margin: 0;
-      background: linear-gradient(90deg, #000000, #0F0F0F);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
+ body {
+  margin: 0;
+  background-image: url("https://github.com/Vdffrfr333434/HntrsNt/blob/main/HuntersPattern1.png?raw=true"); /* путь к твоему узору */
+  background-repeat: repeat;            /* повторяем по горизонтали и вертикали */
+  background-size: auto;                /* или можно указать 100px 100px — масштаб */
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
 
     .container {
       background: rgba(255, 255, 255, 0.1);
@@ -30,6 +32,13 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       backdrop-filter: blur(8px);
     }
+    
+    .logo img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px; /* центрируем и даем отступ снизу */
+}
 
     .logo {
       font-size: 2em;
@@ -95,7 +104,7 @@
 </head>
 <body>
   <div class="container">
-    <div class="logo"><img src="https://github.com/Vdffrfr333434/HntrsNt/blob/main/HnetApp.png?raw=true" alt="Hunters.Net" /></div>
+    <div class="logo.img"><img src="https://github.com/Vdffrfr333434/HntrsNt/blob/main/HnetApp.png?raw=true" alt="Hunters.Net" /></div>
 
     <form>
       <input type="text" placeholder="Логин" required />
