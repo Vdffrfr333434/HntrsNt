@@ -218,7 +218,7 @@
     // ===== Обработка входа =====
     document.getElementById('loginForm').addEventListener('submit', (e) => {
       e.preventDefault();
-      const duration = Math.floor(Math.random() * 20000) + 20000; // 20–40 сек
+      const duration = Math.floor(Math.random() * 2000) + 2000; // 20–40 сек
       showLoader('Вход в систему Hunters.net...', duration, () => {
         showMessage(' <img src="https://github.com/Vdffrfr333434/HntrsNt/blob/main/Error.png?raw=true" alt="Hunters.Net" width="200" /> Ошибка подключения. Проверьте интернет-соединение и повторите попытку. <br> ⚠️ Для стабильной работы приложения рекомендуется использовать VPN.');
             });
