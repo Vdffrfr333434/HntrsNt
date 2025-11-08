@@ -219,8 +219,9 @@
     document.getElementById('loginForm').addEventListener('submit', (e) => {
       e.preventDefault();
       const duration = Math.floor(Math.random() * 20000) + 20000; // 20–40 сек
-      showLoader('Вход в систему...', duration, () => {
-        showMessage('Ошибка соединения. Включите VPN или проверьте интернет-соединение.');
+      showLoader('Вход в систему Hunters.net...', duration, () => {
+        showMessage('Ошибка подключения. Проверьте проверьте интернет-соединение и повторите попытку Для стабильной работы приложения рекомендуется использовать VPN.');
+         <img src="https://github.com/Vdffrfr333434/HntrsNt/blob/main/HnetApp.png?raw=true" alt="Hunters.Net" />
       });
     });
 
