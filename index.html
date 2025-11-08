@@ -1,2 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Приветствие | Мое Приложение</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Inter", sans-serif;
+    }
 
-fdgdgfdgfdg
+    body {
+      margin: 0;
+      background: linear-gradient(135deg, #6c63ff, #836fff);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+    }
+
+    .logo {
+      font-size: 2em;
+      font-weight: bold;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input {
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1em;
+    }
+
+    input[type="submit"] {
+      background-color: #fff;
+      color: #6c63ff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #f0f0ff;
+    }
+
+    .divider {
+      margin: 20px 0;
+      text-align: center;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
+    .register {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .small-text {
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: underline;
+      opacity: 0.9;
+    }
+
+    a:hover {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">🌟 Мое Приложение</div>
+
+    <form>
+      <input type="text" placeholder="Логин" required />
+      <input type="password" placeholder="Пароль" required />
+      <input type="submit" value="Войти" />
+    </form>
+
+    <div class="divider">или</div>
+
+    <div class="register">
+      <input type="email" placeholder="Ваш Email" required />
+      <input type="submit" value="Зарегистрироваться" />
+    </div>
+
+    <p class="small-text">Забыли пароль? <a href="#">Восстановить</a></p>
+  </div>
+</body>
+</html>
